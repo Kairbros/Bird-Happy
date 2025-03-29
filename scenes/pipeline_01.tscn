@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuvq0a6xhi0o8"]
+
+[ext_resource type="Script" uid="uid://j2vhbv75e4bc" path="res://scenes/death_area_script.gd" id="1_x1lv5"]
+[ext_resource type="Script" uid="uid://bvjnedru5dc7f" path="res://scenes/poit_area_script.gd" id="2_x1lv5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1lv5"]
+size = Vector2(30, 191)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x1lv5"]
+load_path = "res://.godot/imported/PipeStyle1.png-e597061204d17ea1d2d41167409d5323.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1lv5"]
+atlas = SubResource("CompressedTexture2D_x1lv5")
+region = Rect2(64, 40, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeo78"]
+atlas = SubResource("CompressedTexture2D_x1lv5")
+region = Rect2(64, 18.385, 32, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfryp"]
+size = Vector2(30, 60)
+
+[node name="Pipeline01" type="Node2D"]
+z_index = -1
+
+[node name="A" type="Area2D" parent="."]
+position = Vector2(0, -72)
+script = ExtResource("1_x1lv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="A"]
+position = Vector2(0, -55.5)
+shape = SubResource("RectangleShape2D_x1lv5")
+
+[node name="Head" type="Sprite2D" parent="A"]
+position = Vector2(0, 22)
+texture = SubResource("AtlasTexture_x1lv5")
+
+[node name="Other" type="Sprite2D" parent="A"]
+position = Vector2(0, -17)
+texture = SubResource("AtlasTexture_oeo78")
+
+[node name="Other2" type="Sprite2D" parent="A"]
+position = Vector2(0, -55)
+texture = SubResource("AtlasTexture_oeo78")
+
+[node name="Other3" type="Sprite2D" parent="A"]
+position = Vector2(0, -91)
+texture = SubResource("AtlasTexture_oeo78")
+
+[node name="Other4" type="Sprite2D" parent="A"]
+position = Vector2(0, -131)
+texture = SubResource("AtlasTexture_oeo78")
+
+[node name="B" type="Area2D" parent="."]
+position = Vector2(0, 72)
+scale = Vector2(1, -1)
+script = ExtResource("1_x1lv5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="B"]
+position = Vector2(0, -54)
+shape = SubResource("RectangleShape2D_x1lv5")
+
+[node name="Head" type="Sprite2D" parent="B"]
+position = Vector2(0, 22)
+texture = SubResource("AtlasTexture_x1lv5")
+
+[node name="Other" type="Sprite2D" parent="B"]
+position = Vector2(0, -17)
+texture = SubResource("AtlasTexture_oeo78")
+
+[node name="Other2" type="Sprite2D" parent="B"]
+position = Vector2(0, -55)
+texture = SubResource("AtlasTexture_oeo78")
+
+[node name="Other3" type="Sprite2D" parent="B"]
+position = Vector2(0, -91)
+texture = SubResource("AtlasTexture_oeo78")
+
+[node name="Other4" type="Sprite2D" parent="B"]
+position = Vector2(0, -131)
+texture = SubResource("AtlasTexture_oeo78")
+
+[node name="PoitArea" type="Area2D" parent="."]
+script = ExtResource("2_x1lv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoitArea"]
+shape = SubResource("RectangleShape2D_lfryp")
+
+[connection signal="body_entered" from="A" to="A" method="_on_body_entered"]
+[connection signal="body_entered" from="B" to="B" method="_on_body_entered"]
+[connection signal="body_entered" from="PoitArea" to="PoitArea" method="_on_body_entered"]

@@ -1,0 +1,142 @@
+[gd_scene load_steps=15 format=3 uid="uid://d021j213kf7ig"]
+
+[ext_resource type="Script" uid="uid://2p6n8u1jy8vm" path="res://scenes/menu_script.gd" id="1_6wmco"]
+[ext_resource type="Texture2D" uid="uid://bawead7fv0mv3" path="res://sprites/Flappy Bird Assets/Background/Background7.png" id="1_vrre2"]
+[ext_resource type="FontFile" uid="uid://oy4m3nbc0w6i" path="res://Bongo-8 Mono.ttf" id="2_o71fo"]
+[ext_resource type="Shader" uid="uid://chj35hnjq5ae8" path="res://shake.tres" id="3_482oc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u4hxd"]
+shader = ExtResource("3_482oc")
+shader_parameter/speed = -5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6od1f"]
+shader = ExtResource("3_482oc")
+shader_parameter/speed = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_520ac"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u4hxd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6od1f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o71fo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjll7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_482oc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yfxa8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wmco"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6wmco")
+
+[node name="Background" type="Parallax2D" parent="."]
+repeat_size = Vector2(768, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 15
+
+[node name="1" type="Sprite2D" parent="Background"]
+z_index = -2
+position = Vector2(128, 308)
+scale = Vector2(3, 3)
+texture = ExtResource("1_vrre2")
+
+[node name="Color" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 1, 0.317647)
+
+[node name="Hbox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -494.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MaxPoints" type="RichTextLabel" parent="Hbox"]
+material = SubResource("ShaderMaterial_u4hxd")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("2_o71fo")
+theme_override_font_sizes/normal_font_size = 32
+text = "max_points"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MaxPointsCount" type="RichTextLabel" parent="Hbox"]
+material = SubResource("ShaderMaterial_6od1f")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("2_o71fo")
+theme_override_font_sizes/normal_font_size = 32
+scroll_active = false
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -50.5
+offset_right = 39.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 128
+
+[node name="StartBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("2_o71fo")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_520ac")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_u4hxd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6od1f")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o71fo")
+text = "start_btn"
+
+[node name="ExitBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("2_o71fo")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vjll7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_482oc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yfxa8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6wmco")
+text = "exit_btn"
+
+[connection signal="pressed" from="VBoxContainer/StartBtn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitBtn" to="." method="_on_exit_btn_pressed"]

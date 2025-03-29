@@ -1,0 +1,260 @@
+[gd_scene load_steps=18 format=3 uid="uid://bdptoy2jpvqx"]
+
+[ext_resource type="Script" uid="uid://dthl4w7ttssco" path="res://scenes/player_script.gd" id="1_vefth"]
+[ext_resource type="Texture2D" uid="uid://dvxvx0gcsf146" path="res://sprites/Flappy Bird Assets/Player/StyleBird2/Bird2-2.png" id="2_vefth"]
+[ext_resource type="Shader" uid="uid://chj35hnjq5ae8" path="res://shake.tres" id="3_icjpm"]
+[ext_resource type="FontFile" uid="uid://oy4m3nbc0w6i" path="res://Bongo-8 Mono.ttf" id="3_rbmgg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvcr2"]
+atlas = ExtResource("2_vefth")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbmgg"]
+atlas = ExtResource("2_vefth")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icjpm"]
+atlas = ExtResource("2_vefth")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yuc3v"]
+atlas = ExtResource("2_vefth")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iya25"]
+atlas = ExtResource("2_vefth")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iya25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvcr2")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbmgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icjpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yuc3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iya25")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_crmta"]
+radius = 7.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yuc3v"]
+shader = ExtResource("3_icjpm")
+shader_parameter/speed = -5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iya25"]
+shader = ExtResource("3_icjpm")
+shader_parameter/speed = -5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_icjpm"]
+shader = ExtResource("3_icjpm")
+shader_parameter/speed = 5.0
+
+[sub_resource type="Animation" id="Animation_lvcr2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOverScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iya25"]
+resource_name = "gameover"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOverScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c3371"]
+_data = {
+&"RESET": SubResource("Animation_lvcr2"),
+&"gameover": SubResource("Animation_iya25")
+}
+
+[node name="Player" type="CharacterBody2D"]
+z_index = -2
+script = ExtResource("1_vefth")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_iya25")
+animation = &"death"
+autoplay = "fly"
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_crmta")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(3.5, 3.5)
+limit_top = 0
+limit_bottom = 256
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="UIPlayer" type="CanvasLayer" parent="."]
+
+[node name="GamePointCount" type="Control" parent="UIPlayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIPlayer/GamePointCount"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = 3.0
+offset_right = -256.0
+offset_bottom = -570.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Points" type="RichTextLabel" parent="UIPlayer/GamePointCount/HBoxContainer"]
+material = SubResource("ShaderMaterial_yuc3v")
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_rbmgg")
+theme_override_font_sizes/normal_font_size = 32
+text = "points"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PointsCount" type="RichTextLabel" parent="UIPlayer/GamePointCount/HBoxContainer"]
+material = SubResource("ShaderMaterial_iya25")
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_rbmgg")
+theme_override_font_sizes/normal_font_size = 32
+text = "a"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="GameOverScreen" type="Control" parent="UIPlayer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverColor" type="ColorRect" parent="UIPlayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0.101961)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIPlayer/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -200
+
+[node name="GameOverMessage" type="RichTextLabel" parent="UIPlayer/GameOverScreen/VBoxContainer"]
+material = SubResource("ShaderMaterial_yuc3v")
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_rbmgg")
+theme_override_font_sizes/normal_font_size = 32
+text = "game_over_message"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResetMessage" type="RichTextLabel" parent="UIPlayer/GameOverScreen/VBoxContainer"]
+material = SubResource("ShaderMaterial_yuc3v")
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_rbmgg")
+theme_override_font_sizes/normal_font_size = 32
+text = "reset_message"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIPlayer/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MaxPoints" type="RichTextLabel" parent="UIPlayer/GameOverScreen/VBoxContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_yuc3v")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_rbmgg")
+theme_override_font_sizes/normal_font_size = 32
+text = "max_points"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MaxPointsCount" type="RichTextLabel" parent="UIPlayer/GameOverScreen/VBoxContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_icjpm")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("3_rbmgg")
+theme_override_font_sizes/normal_font_size = 32
+scroll_active = false
+vertical_alignment = 1
+
+[node name="UIAnimation" type="AnimationPlayer" parent="UIPlayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_c3371")
+}

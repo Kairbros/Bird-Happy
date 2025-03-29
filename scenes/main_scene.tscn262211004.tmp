@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd30kgnq6bv0i"]
+
+[ext_resource type="Texture2D" uid="uid://bojn45dyyqs38" path="res://sprites/Flappy Bird Assets/Background/Background8.png" id="1_w2twt"]
+[ext_resource type="PackedScene" uid="uid://bdptoy2jpvqx" path="res://scenes/player_scene.tscn" id="2_pw63i"]
+[ext_resource type="Script" uid="uid://j2vhbv75e4bc" path="res://scenes/death_area_script.gd" id="3_7ykc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pw63i"]
+size = Vector2(592, 197)
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Parallax2D" parent="."]
+repeat_size = Vector2(256, 0)
+autoscroll = Vector2(-25, 0)
+repeat_times = 5
+
+[node name="1" type="Sprite2D" parent="Background"]
+position = Vector2(128, 128)
+texture = ExtResource("1_w2twt")
+
+[node name="player" parent="." instance=ExtResource("2_pw63i")]
+position = Vector2(40, 127)
+
+[node name="DeathArea" type="Area2D" parent="."]
+position = Vector2(55, 354)
+script = ExtResource("3_7ykc4")
+
+[node name="Collider" type="CollisionShape2D" parent="DeathArea"]
+shape = SubResource("RectangleShape2D_pw63i")
+
+[node name="DeathArea2" type="Area2D" parent="."]
+position = Vector2(55, -99)
+script = ExtResource("3_7ykc4")
+
+[node name="Collider" type="CollisionShape2D" parent="DeathArea2"]
+shape = SubResource("RectangleShape2D_pw63i")
+
+[connection signal="body_entered" from="DeathArea" to="DeathArea" method="_on_body_entered"]
+[connection signal="body_entered" from="DeathArea2" to="DeathArea2" method="_on_body_entered"]

@@ -1,0 +1,7 @@
+keys,es,en
+game_over_message,Game Over,Game Over
+reset_message,Presiona Espacio para volverlo a intentar,Press Space to restart
+max_points,Puntaje maximo: ,Best score: 
+points,Puntaje: ,Score: 
+start_btn,Jugar,Play
+exit_btn,Salir,Exit

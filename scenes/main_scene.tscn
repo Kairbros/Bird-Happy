@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd30kgnq6bv0i"]
+
+[ext_resource type="Texture2D" uid="uid://bawead7fv0mv3" path="res://sprites/Flappy Bird Assets/Background/Background7.png" id="1_7ykc4"]
+[ext_resource type="Script" uid="uid://dbba5q0b8pwuw" path="res://scenes/main_scene_script.gd" id="1_pu3yx"]
+[ext_resource type="PackedScene" uid="uid://bdptoy2jpvqx" path="res://scenes/player_scene.tscn" id="2_pw63i"]
+[ext_resource type="Script" uid="uid://j2vhbv75e4bc" path="res://scenes/death_area_script.gd" id="3_7ykc4"]
+[ext_resource type="Texture2D" uid="uid://cd0xe64gm324h" path="res://sprites/Flappy Bird Assets/Tiles/Style 1/SimpleStyle1.png" id="5_gubc5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gubc5"]
+atlas = ExtResource("5_gubc5")
+region = Rect2(0, 81, 64, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pw63i"]
+size = Vector2(592, 213.5)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_pu3yx")
+
+[node name="Background" type="Parallax2D" parent="."]
+repeat_size = Vector2(256, 0)
+repeat_times = 15
+
+[node name="1" type="Sprite2D" parent="Background"]
+z_index = -2
+position = Vector2(128, 128)
+texture = ExtResource("1_7ykc4")
+
+[node name="2" type="Sprite2D" parent="Background"]
+scale = Vector2(1, -1)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="3" type="Sprite2D" parent="Background"]
+position = Vector2(-64, 0)
+scale = Vector2(1, -1)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="4" type="Sprite2D" parent="Background"]
+position = Vector2(-128, 0)
+scale = Vector2(1, -1)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="5" type="Sprite2D" parent="Background"]
+position = Vector2(-192, 0)
+scale = Vector2(1, -1)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="6" type="Sprite2D" parent="Background"]
+position = Vector2(0, 248.5)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="7" type="Sprite2D" parent="Background"]
+position = Vector2(-64, 248.5)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="8" type="Sprite2D" parent="Background"]
+position = Vector2(-128, 248.5)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="9" type="Sprite2D" parent="Background"]
+position = Vector2(-192, 248.5)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="player" parent="." instance=ExtResource("2_pw63i")]
+position = Vector2(40, 127)
+
+[node name="DeathArea" type="Area2D" parent="."]
+position = Vector2(55, 354)
+script = ExtResource("3_7ykc4")
+
+[node name="Collider" type="CollisionShape2D" parent="DeathArea"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_pw63i")
+
+[node name="DeathArea2" type="Area2D" parent="."]
+position = Vector2(55, -99)
+script = ExtResource("3_7ykc4")
+
+[node name="Collider" type="CollisionShape2D" parent="DeathArea2"]
+shape = SubResource("RectangleShape2D_pw63i")
+
+[node name="MinSpawnPipeline" type="Marker2D" parent="."]
+position = Vector2(259, 64)
+
+[node name="MaxSpawnPipeline" type="Marker2D" parent="."]
+position = Vector2(259, 192)
+
+[connection signal="body_entered" from="DeathArea" to="DeathArea" method="_on_body_entered"]
+[connection signal="body_entered" from="DeathArea2" to="DeathArea2" method="_on_body_entered"]
