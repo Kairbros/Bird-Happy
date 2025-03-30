@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbbrrb184pvdw"]
+
+[ext_resource type="Script" uid="uid://kkv1iaexshns" path="res://scenes/audio_stream_player_script.gd" id="1_2316i"]
+[ext_resource type="AudioStream" uid="uid://cth0qt7h6lpqo" path="res://sound/001_Hover_01.wav" id="2_lwdmc"]
+[ext_resource type="AudioStream" uid="uid://cdrraqebikryc" path="res://sound/013_Confirm_03.wav" id="3_okbqc"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+volume_db = 10.0
+script = ExtResource("1_2316i")
+array_sound = Array[AudioStream]([ExtResource("2_lwdmc"), ExtResource("3_okbqc")])

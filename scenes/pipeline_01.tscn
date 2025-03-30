@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cuvq0a6xhi0o8"]
+[gd_scene load_steps=11 format=3 uid="uid://cuvq0a6xhi0o8"]
 
 [ext_resource type="Script" uid="uid://j2vhbv75e4bc" path="res://scenes/death_area_script.gd" id="1_x1lv5"]
 [ext_resource type="Script" uid="uid://bvjnedru5dc7f" path="res://scenes/poit_area_script.gd" id="2_x1lv5"]
+[ext_resource type="PackedScene" uid="uid://bbbrrb184pvdw" path="res://sound/audio.tscn" id="3_oeo78"]
+[ext_resource type="AudioStream" uid="uid://bfyg6q0sasken" path="res://sound/092_Pause_04.wav" id="4_opgxd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1lv5"]
 size = Vector2(30, 191)
@@ -16,6 +18,9 @@ region = Rect2(64, 40, 32, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_oeo78"]
 atlas = SubResource("CompressedTexture2D_x1lv5")
 region = Rect2(64, 18.385, 32, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bejlx"]
+size = Vector2(22, 183.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfryp"]
 size = Vector2(30, 60)
@@ -51,6 +56,12 @@ texture = SubResource("AtlasTexture_oeo78")
 position = Vector2(0, -131)
 texture = SubResource("AtlasTexture_oeo78")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="A"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="A/StaticBody2D"]
+position = Vector2(0, -53.75)
+shape = SubResource("RectangleShape2D_bejlx")
+
 [node name="B" type="Area2D" parent="."]
 position = Vector2(0, 72)
 scale = Vector2(1, -1)
@@ -80,11 +91,20 @@ texture = SubResource("AtlasTexture_oeo78")
 position = Vector2(0, -131)
 texture = SubResource("AtlasTexture_oeo78")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="B"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="B/StaticBody2D"]
+position = Vector2(0, -53.75)
+shape = SubResource("RectangleShape2D_bejlx")
+
 [node name="PoitArea" type="Area2D" parent="."]
 script = ExtResource("2_x1lv5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PoitArea"]
 shape = SubResource("RectangleShape2D_lfryp")
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("3_oeo78")]
+array_sound = Array[AudioStream]([ExtResource("4_opgxd")])
 
 [connection signal="body_entered" from="A" to="A" method="_on_body_entered"]
 [connection signal="body_entered" from="B" to="B" method="_on_body_entered"]

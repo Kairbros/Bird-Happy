@@ -8,7 +8,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gubc5"]
 atlas = ExtResource("5_gubc5")
-region = Rect2(0, 81, 64, 17)
+region = Rect2(0, 81, 46, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw63i"]
 size = Vector2(592, 213.5)
@@ -18,64 +18,97 @@ script = ExtResource("1_pu3yx")
 
 [node name="Background" type="Parallax2D" parent="."]
 repeat_size = Vector2(256, 0)
-repeat_times = 15
+repeat_times = 10
 
 [node name="1" type="Sprite2D" parent="Background"]
 z_index = -2
 position = Vector2(128, 128)
 texture = ExtResource("1_7ykc4")
 
-[node name="2" type="Sprite2D" parent="Background"]
-scale = Vector2(1, -1)
-texture = SubResource("AtlasTexture_gubc5")
-
-[node name="3" type="Sprite2D" parent="Background"]
-position = Vector2(-64, 0)
-scale = Vector2(1, -1)
-texture = SubResource("AtlasTexture_gubc5")
-
-[node name="4" type="Sprite2D" parent="Background"]
-position = Vector2(-128, 0)
-scale = Vector2(1, -1)
-texture = SubResource("AtlasTexture_gubc5")
-
-[node name="5" type="Sprite2D" parent="Background"]
-position = Vector2(-192, 0)
-scale = Vector2(1, -1)
-texture = SubResource("AtlasTexture_gubc5")
-
 [node name="6" type="Sprite2D" parent="Background"]
-position = Vector2(0, 248.5)
+position = Vector2(-72, 248.5)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="10" type="Sprite2D" parent="Background"]
+position = Vector2(-26, 248.5)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="11" type="Sprite2D" parent="Background"]
+position = Vector2(7, 248.5)
 texture = SubResource("AtlasTexture_gubc5")
 
 [node name="7" type="Sprite2D" parent="Background"]
-position = Vector2(-64, 248.5)
+position = Vector2(-118, 248.5)
 texture = SubResource("AtlasTexture_gubc5")
 
 [node name="8" type="Sprite2D" parent="Background"]
-position = Vector2(-128, 248.5)
+position = Vector2(-164, 248.5)
 texture = SubResource("AtlasTexture_gubc5")
 
 [node name="9" type="Sprite2D" parent="Background"]
-position = Vector2(-192, 248.5)
+position = Vector2(-210, 248.5)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="12" type="Sprite2D" parent="Background"]
+position = Vector2(-68, 8.5)
+scale = Vector2(1, -1)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="13" type="Sprite2D" parent="Background"]
+position = Vector2(-22, 8.5)
+scale = Vector2(1, -1)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="14" type="Sprite2D" parent="Background"]
+position = Vector2(11, 8.5)
+scale = Vector2(1, -1)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="15" type="Sprite2D" parent="Background"]
+position = Vector2(-114, 8.5)
+scale = Vector2(1, -1)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="16" type="Sprite2D" parent="Background"]
+position = Vector2(-160, 8.5)
+scale = Vector2(1, -1)
+texture = SubResource("AtlasTexture_gubc5")
+
+[node name="17" type="Sprite2D" parent="Background"]
+position = Vector2(-206, 8.5)
+scale = Vector2(1, -1)
 texture = SubResource("AtlasTexture_gubc5")
 
 [node name="player" parent="." instance=ExtResource("2_pw63i")]
 position = Vector2(40, 127)
 
 [node name="DeathArea" type="Area2D" parent="."]
-position = Vector2(55, 354)
+position = Vector2(55, 353)
 script = ExtResource("3_7ykc4")
 
 [node name="Collider" type="CollisionShape2D" parent="DeathArea"]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_pw63i")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="DeathArea"]
+position = Vector2(0, 6)
+
+[node name="Collider" type="CollisionShape2D" parent="DeathArea/StaticBody2D"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_pw63i")
+
 [node name="DeathArea2" type="Area2D" parent="."]
-position = Vector2(55, -99)
+position = Vector2(55, -91)
 script = ExtResource("3_7ykc4")
 
 [node name="Collider" type="CollisionShape2D" parent="DeathArea2"]
+shape = SubResource("RectangleShape2D_pw63i")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DeathArea2"]
+position = Vector2(0, -4)
+
+[node name="Collider" type="CollisionShape2D" parent="DeathArea2/StaticBody2D"]
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_pw63i")
 
 [node name="MinSpawnPipeline" type="Marker2D" parent="."]

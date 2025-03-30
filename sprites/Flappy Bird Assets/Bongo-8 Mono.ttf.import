@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://oy4m3nbc0w6i"
-path="res://.godot/imported/Bongo-8 Mono.ttf-fcfe4cc0f8994f247be815d97ac0e513.fontdata"
+path="res://.godot/imported/Bongo-8 Mono.ttf-e4ec6f97c8f7ef09902931b508a922b1.fontdata"
 
 [deps]
 
-source_file="res://Bongo-8 Mono.ttf"
-dest_files=["res://.godot/imported/Bongo-8 Mono.ttf-fcfe4cc0f8994f247be815d97ac0e513.fontdata"]
+source_file="res://sprites/Flappy Bird Assets/Bongo-8 Mono.ttf"
+dest_files=["res://.godot/imported/Bongo-8 Mono.ttf-e4ec6f97c8f7ef09902931b508a922b1.fontdata"]
 
 [params]
 

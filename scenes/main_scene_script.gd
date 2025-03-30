@@ -14,7 +14,7 @@ var pipeline_timer :float = pipeline_time
 var velocidad_base := 75
 var velocidad := velocidad_base
 
-var incremento_puntos := 10
+var incremento_puntos := 5
 var incremento_velocidad := 0.05
 
 func _physics_process(delta: float) -> void:

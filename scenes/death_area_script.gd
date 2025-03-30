@@ -2,4 +2,5 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.game_over()
+		if !body.player_death:
+			body.game_over()
