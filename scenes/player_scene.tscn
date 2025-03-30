@@ -56,11 +56,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_crmta"]
 radius = 7.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yuc3v"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iya25"]
 shader = ExtResource("3_icjpm")
 shader_parameter/speed = -5.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iya25"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yuc3v"]
 shader = ExtResource("3_icjpm")
 shader_parameter/speed = -5.0
 
@@ -136,28 +136,11 @@ size_flags_horizontal = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UIPlayer/GamePointCount"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -256.0
-offset_top = 3.0
-offset_right = -256.0
-offset_bottom = -570.0
+offset_top = -5.0
+offset_bottom = 85.0
 grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Points" type="RichTextLabel" parent="UIPlayer/GamePointCount/HBoxContainer"]
-material = SubResource("ShaderMaterial_yuc3v")
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/normal_font = ExtResource("3_rbmgg")
-theme_override_font_sizes/normal_font_size = 32
-text = "points"
-scroll_active = false
-horizontal_alignment = 2
-vertical_alignment = 1
 
 [node name="PointsCount" type="RichTextLabel" parent="UIPlayer/GamePointCount/HBoxContainer"]
 material = SubResource("ShaderMaterial_iya25")
@@ -167,8 +150,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/normal_font = ExtResource("3_rbmgg")
 theme_override_font_sizes/normal_font_size = 32
-text = "a"
 scroll_active = false
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOverScreen" type="Control" parent="UIPlayer"]
