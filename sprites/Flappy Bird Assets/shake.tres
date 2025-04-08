@@ -24,13 +24,13 @@ operator = 2
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_rpric"]
 parameter_name = "speed"
 default_value_enabled = true
-default_value = 2.5
+default_value = 2.561
 
 [resource]
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
-uniform float speed = 2.5;
+uniform float speed = 2.56100010871887;
 
 
 

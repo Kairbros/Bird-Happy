@@ -14,7 +14,7 @@ config/name="Bird Happy "
 run/main_scene="uid://d021j213kf7ig"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=60
-config/icon="uid://cjfsso660mxl2"
+config/icon="uid://cr8x3g4hxtvak"
 
 [autoload]
 
@@ -46,6 +46,7 @@ exit={
 [internationalization]
 
 locale/translations=PackedStringArray("res://translate/text.en.translation", "res://translate/text.es.translation")
+locale/test="en"
 
 [rendering]
 

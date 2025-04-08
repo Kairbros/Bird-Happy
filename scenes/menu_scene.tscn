@@ -12,7 +12,7 @@ shader_parameter/speed = 5.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_482oc"]
 shader = ExtResource("3_482oc")
-shader_parameter/speed = 2.5
+shader_parameter/speed = 2.561
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_520ac"]
 
