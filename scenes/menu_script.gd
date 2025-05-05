@@ -6,8 +6,7 @@ extends Control
 
 func _ready() -> void:
 	if OS.has_feature("web"):
-		exit_btn.disabled = true
-		exit_btn.visible = false
+		exit_btn.queue_free()
 
 func _physics_process(_delta: float) -> void:
 	max_points_count.text = str(Global.max_points)
@@ -16,11 +15,15 @@ func _physics_process(_delta: float) -> void:
 func mouse_enter() -> void:
 	audio_stream_player.start(0)
 
-func _on_start_btn_button_up() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_scene.tscn")
 
-func _on_exit_btn_button_up() -> void:
-	get_tree().quit()
 
 func down() -> void:
 	audio_stream_player.start(1)
+
+
+func _on_exit_btn_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_start_btn_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_scene.tscn")

@@ -66,10 +66,6 @@ colors = PackedColorArray(1, 1, 1, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yuc3v"]
 gradient = SubResource("Gradient_icjpm")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iya25"]
-shader = ExtResource("3_icjpm")
-shader_parameter/speed = -5.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yuc3v"]
 shader = ExtResource("3_icjpm")
 shader_parameter/speed = -5.0
@@ -77,6 +73,10 @@ shader_parameter/speed = -5.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_icjpm"]
 shader = ExtResource("3_icjpm")
 shader_parameter/speed = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iya25"]
+shader = ExtResource("3_icjpm")
+shader_parameter/speed = -5.0
 
 [sub_resource type="Animation" id="Animation_lvcr2"]
 length = 0.001
@@ -144,34 +144,6 @@ scale = Vector2(18.7188, 10.5781)
 texture_normal = SubResource("GradientTexture2D_yuc3v")
 action = "jump"
 
-[node name="GamePointCount" type="Control" parent="UIPlayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UIPlayer/GamePointCount"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 123.0
-grow_horizontal = 2
-
-[node name="PointsCount" type="RichTextLabel" parent="UIPlayer/GamePointCount/HBoxContainer"]
-material = SubResource("ShaderMaterial_iya25")
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 32
-theme_override_fonts/normal_font = ExtResource("3_rbmgg")
-theme_override_font_sizes/normal_font_size = 64
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="GameOverScreen" type="Control" parent="UIPlayer"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
@@ -206,7 +178,7 @@ size_flags_vertical = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/normal_font = ExtResource("3_rbmgg")
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 64
 text = "game_over_message"
 scroll_active = false
 horizontal_alignment = 1
@@ -253,6 +225,34 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/normal_font = ExtResource("3_rbmgg")
 theme_override_font_sizes/normal_font_size = 32
 scroll_active = false
+vertical_alignment = 1
+
+[node name="GamePointCount" type="Control" parent="UIPlayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIPlayer/GamePointCount"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 123.0
+grow_horizontal = 2
+
+[node name="PointsCount" type="RichTextLabel" parent="UIPlayer/GamePointCount/HBoxContainer"]
+material = SubResource("ShaderMaterial_iya25")
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("3_rbmgg")
+theme_override_font_sizes/normal_font_size = 64
+scroll_active = false
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UIAnimation" type="AnimationPlayer" parent="UIPlayer"]

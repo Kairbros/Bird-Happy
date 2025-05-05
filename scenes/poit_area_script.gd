@@ -4,5 +4,6 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		audio_stream_player.start(0)
-		Global.point_count += 1
+		if !body.player_death:
+			audio_stream_player.start(0)
+			Global.point_count += 1
